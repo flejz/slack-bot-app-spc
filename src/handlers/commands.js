@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const secretsManager = new AWS.SecretsManager();
-const axios = require('axios');
+const superagent = require('superagent');
 const { parse } = require('url');
 
 // the main handler
@@ -41,13 +41,13 @@ exports.handler = async (event) => {
   // fetch weather information
   const city = find('text')
   console.log(`city ${city}`);
-  const { data } = await axios.get('https://samples.openweathermap.org/data/2.5/find', {
-    params: {
+  const { data } = await superagent
+    .get('https://samples.openweathermap.org/data/2.5/find')
+    .query({
       q: city,
       units: 'metric',
       appid: secretString.Weather_Appid
-    }
-  });
+    });
   console.log(`data ${JSON.stringify(data)}`);
 
   // get the response_url key-value from the body request

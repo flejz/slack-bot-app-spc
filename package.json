@@ -5,7 +5,7 @@
     "private": true,
     "dependencies": {
         "aws-sdk": "latest",
-        "axios": "^0.19.0"
+        "superagent": "^5.1.0"
     },
     "devDependencies": {
         "jest": "^24.7.1"
