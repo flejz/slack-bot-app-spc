@@ -44,7 +44,7 @@ exports.handler = async (event) => {
   const { body } = await superagent
     .get('https://api.openweathermap.org/data/2.5/weather')
     .query({
-      q: city,
+      q: city.replace('+', ' '),
       units: 'metric',
       appid: secretString.Weather_Appid
     });
