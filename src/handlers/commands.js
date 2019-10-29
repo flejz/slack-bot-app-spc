@@ -41,14 +41,14 @@ exports.handler = async (event) => {
   // fetch weather information
   const city = find('text')
   console.log(`city ${city}`);
-  const { data } = await superagent
+  const { body } = await superagent
     .get('https://samples.openweathermap.org/data/2.5/find')
     .query({
       q: city,
       units: 'metric',
       appid: secretString.Weather_Appid
     });
-  console.log(`data ${JSON.stringify(data)}`);
+  console.log(`data ${JSON.stringify(body)}`);
 
   // get the response_url key-value from the body request
   const url = find('response_url')
