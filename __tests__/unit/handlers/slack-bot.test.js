@@ -1,5 +1,5 @@
 // Import all functions from slack-bot.js
-const lambda = require('../../../src/handlers/slack-bot.js');
+const lambda = require('../../../src/handlers/events.js');
 
 describe('Test for slack-bot', () => {
     // This test invokes the hello-from-lambda Lambda function and compares the result
