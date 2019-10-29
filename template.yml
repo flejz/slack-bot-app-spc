@@ -80,7 +80,7 @@ Resources:
     Properties:
       Description: Contains all secrets used by the app
       Name: !Join ["-",[!Ref "AWS::StackName", "Secret"]]
-      SecretString: '{"Bot_Token": "Placeholder", "Signing_Secret": "Placeholder"}'
+      SecretString: '{"Bot_Token": "Placeholder", "Signing_Secret": "Placeholder", "Weather_Appid": "Placeholder"}'
 
   # Alarm for the Lambda function triggered when there's an invocation error within a 5 minute interval
   EventHandlerFunctionAlarm:

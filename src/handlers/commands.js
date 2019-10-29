@@ -35,11 +35,11 @@ exports.handler = async (event) => {
 
   // format the key values
   const keyValues = event.body.split('&').map(item => item.split('='))
-  const find = (compare) => keyValues.find(([key]) => key === compare)
+  const find = (compare) => keyValues.find(([key]) => key === compare)[1]
   console.log(JSON.stringify(keyValues));
 
   // fetch weather information
-  const [, city] = find('text')
+  const city = find('text')
   console.log(`city ${city}`);
   const { data } = await axios.get('https://samples.openweathermap.org/data/2.5/find', {
     params: {
@@ -51,11 +51,9 @@ exports.handler = async (event) => {
   console.log(`data ${JSON.stringify(data)}`);
 
   // get the response_url key-value from the body request
-  const [, url] = find('response_url')
+  const url = find('response_url')
   console.log(`url ${url}`);
   return await postToSlack(decodeURIComponent(url), `Hey-Ho, let's go!`);
-
-
 };
 
 const postToSlack = async (url, text) => {
