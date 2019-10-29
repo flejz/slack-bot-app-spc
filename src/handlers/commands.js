@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const secretsManager = new AWS.SecretsManager();
-const axios = require('axios')
+const axios = require('axios');
 const { parse } = require('url');
 
 // the main handler
