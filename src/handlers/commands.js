@@ -3,7 +3,7 @@
     This function processes events from Slack (received through API Gateway) and echoes them back to Slack.
 */
 const AWS = require('aws-sdk');
-const url = require('url');
+const { parse } = require('url');
 
 // The main handler
 exports.handler = async (event) => {
@@ -25,7 +25,7 @@ exports.handler = async (event) => {
 const postToSlack = async (url, text) => {
   return new Promise((resolve, reject) => {
     const https = require('https');
-    const { hostname, path } = url.parse(url);
+    const { hostname, path } = parse(url);
     const data = { text };
 
     const options = {
