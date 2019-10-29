@@ -1,6 +1,5 @@
 const AWS = require('aws-sdk');
 const secretsManager = new AWS.SecretsManager();
-const superagent = require('superagent');
 const { parse } = require('url');
 
 // the main handler
@@ -41,6 +40,7 @@ exports.handler = async (event) => {
   // fetch weather information
   const city = find('text')
   console.log(`city ${city}`);
+  const superagent = require('superagent');
   const { data } = await superagent
     .get('https://samples.openweathermap.org/data/2.5/find')
     .query({
