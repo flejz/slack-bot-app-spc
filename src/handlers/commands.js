@@ -42,7 +42,7 @@ exports.handler = async (event) => {
   const city = find('text')
   console.log(`city ${city}`);
   const { body } = await superagent
-    .get('https://samples.openweathermap.org/data/2.5/find')
+    .get('https://api.openweathermap.org/data/2.5/weather')
     .query({
       q: city,
       units: 'metric',
@@ -50,10 +50,13 @@ exports.handler = async (event) => {
     });
   console.log(`data ${JSON.stringify(body)}`);
 
+  let text = `${body.name} is ${body.main.temp} °C with wind speed of ${body.wind.speed} and ${body.clouds.all}% chance of raining`
+  console.log(`text ${text}`);
+
   // get the response_url key-value from the body request
   const url = find('response_url')
   console.log(`url ${url}`);
-  return await postToSlack(decodeURIComponent(url), `Hey-Ho, let's go!`);
+  return await postToSlack(decodeURIComponent(url), text);
 };
 
 const postToSlack = async (url, text) => {
