@@ -53,8 +53,8 @@ Resources:
   CommandHandlerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./src/handlers/commands.js
-      Handler: commands.handler
+      CodeUri: ./
+      Handler: src/handlers/commands.handler
       Runtime: nodejs10.x
       MemorySize: 128
       Timeout: 60
