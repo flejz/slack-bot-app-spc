@@ -50,12 +50,18 @@ exports.handler = async (event) => {
     });
   console.log(`data ${JSON.stringify(body)}`);
 
-  let text = `${body.name} is ${body.main.temp} °C with wind speed of ${body.wind.speed} and ${body.clouds.all}% chance of raining`
-  console.log(`text ${text}`);
+  let text
+  if (!body) {
 
-  // get the response_url key-value from the body request
-  const url = find('response_url')
-  console.log(`url ${url}`);
+    text = `${body.name} is ${body.main.temp} °C with wind speed of ${body.wind.speed} and ${body.clouds.all}% chance of raining`
+    console.log(`text ${text}`);
+
+    // get the response_url key-value from the body request
+    const url = find('response_url')
+    console.log(`url ${url}`);
+  } else {
+    text = `No info available for ${city.replace('+', ' ')}`
+  }
   return await postToSlack(decodeURIComponent(url), text);
 };
 
